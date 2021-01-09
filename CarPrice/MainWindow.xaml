@@ -1,0 +1,37 @@
+﻿<Window x:Class="CarPrice.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodels="clr-namespace:CarPrice.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="669" Width="654">
+    <Grid>
+        <Grid.DataContext>
+            <viewmodels:MainViewModel/>
+        </Grid.DataContext>
+        
+        <StackPanel Name="dataCar" Margin="165,10,208,292" DataContext="{Binding CurCar}" >
+            <Label Content="Компания"/>
+            <TextBox Text="{Binding Company, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Content="Модель"/>
+            <TextBox Text="{Binding Model, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Content="Пробег"/>
+            <TextBox Text="{Binding Mileage, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Content="Мощность"/>
+            <TextBox Text="{Binding EnginePower, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Content="Объем"/>
+            <TextBox Text="{Binding EngineVolume, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Content="Дата"/>
+            <DatePicker Name="date" SelectedDate="{Binding Date, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Content="КПП"/>
+            <RadioButton Content="Автомат" IsChecked="{Binding Transmission}"/>
+            <RadioButton Content="Механика"/>
+        </StackPanel>
+
+        <StackPanel Name="actions" Margin="147,366,190,206">
+            <Button Name="Calc" Content="Рассчитать" Command="{Binding CalcCommand}" CommandParameter="{Binding CurCar}"/>
+            <TextBlock Text="{Binding Test}" Height="41"/>
+        </StackPanel>
+    </Grid>
+</Window>
