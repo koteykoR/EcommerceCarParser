@@ -5,8 +5,8 @@ namespace CarPrice.ViewModels
 {
     public sealed class Command : ICommand
     {
-        private Action<object> execute;
-        private Func<object, bool> canExecute;
+        private readonly Action<object> execute;
+        private readonly Func<object, bool> canExecute;
 
         public event EventHandler CanExecuteChanged
         {
@@ -14,20 +14,10 @@ namespace CarPrice.ViewModels
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        public Command(Action<object> execute, Func<object, bool> canExecute = null)
-        {
-            this.execute = execute;
-            this.canExecute = canExecute;
-        }
+        public Command(Action<object> _execute, Func<object, bool> _canExecute = null) => (execute, canExecute) = (_execute, _canExecute);
 
-        public bool CanExecute(object parameter)
-        {
-            return this.canExecute == null || this.canExecute(parameter);
-        }
+        public bool CanExecute(object parameter) => canExecute == null || canExecute(parameter);
 
-        public void Execute(object parameter)
-        {
-            this.execute(parameter);
-        }
+        public void Execute(object parameter) => execute(parameter);
     }
 }

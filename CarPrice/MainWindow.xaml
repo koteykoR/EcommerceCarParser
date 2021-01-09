@@ -14,16 +14,22 @@
         <StackPanel Name="dataCar" Margin="165,10,208,292" DataContext="{Binding CurCar}" >
             <Label Content="Компания"/>
             <TextBox Text="{Binding Company, UpdateSourceTrigger=PropertyChanged}"/>
+            
             <Label Content="Модель"/>
             <TextBox Text="{Binding Model, UpdateSourceTrigger=PropertyChanged}"/>
+            
             <Label Content="Пробег"/>
             <TextBox Text="{Binding Mileage, UpdateSourceTrigger=PropertyChanged}"/>
+            
             <Label Content="Мощность"/>
             <TextBox Text="{Binding EnginePower, UpdateSourceTrigger=PropertyChanged}"/>
+            
             <Label Content="Объем"/>
             <TextBox Text="{Binding EngineVolume, UpdateSourceTrigger=PropertyChanged}"/>
+            
             <Label Content="Дата"/>
             <DatePicker Name="date" SelectedDate="{Binding Date, UpdateSourceTrigger=PropertyChanged}"/>
+            
             <Label Content="КПП"/>
             <RadioButton Content="Автомат" IsChecked="{Binding Transmission}"/>
             <RadioButton Content="Механика"/>
@@ -31,6 +37,7 @@
 
         <StackPanel Name="actions" Margin="147,366,190,206">
             <Button Name="Calc" Content="Рассчитать" Command="{Binding CalcCommand}" CommandParameter="{Binding CurCar}"/>
+            
             <TextBlock Text="{Binding Test}" Height="41"/>
         </StackPanel>
     </Grid>
