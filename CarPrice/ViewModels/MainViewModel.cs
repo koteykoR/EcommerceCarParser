@@ -30,7 +30,7 @@ namespace CarPrice.ViewModels
         private Command calcCommand;
         public Command CalcCommand
         {
-            get => calcCommand ??= new Command(obj => { Test = CalcCostCar(obj as Car).ToString(); });
+            get => calcCommand ??= new Command(obj => { Test = $"Price: {CalcCostCar(obj as Car)}\n{obj}"; });
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
