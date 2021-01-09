@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace CarPrice.ViewModels
+namespace CarPrice.Helpers
 {
     public sealed class Command : ICommand
     {
         private readonly Action<object> execute;
-        private readonly Func<object, bool> canExecute;
+        private readonly Predicate<object> canExecute;
 
         public event EventHandler CanExecuteChanged
         {
@@ -14,9 +14,9 @@ namespace CarPrice.ViewModels
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        public Command(Action<object> _execute, Func<object, bool> _canExecute = null) => (execute, canExecute) = (_execute, _canExecute);
+        public Command(Action<object> _execute, Predicate<object> _canExecute = null) => (execute, canExecute) = (_execute, _canExecute);
 
-        public bool CanExecute(object parameter) => canExecute == null || canExecute(parameter);
+        public bool CanExecute(object parameter) => canExecute?.Invoke(parameter) ?? true;
 
         public void Execute(object parameter) => execute(parameter);
     }

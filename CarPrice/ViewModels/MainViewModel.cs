@@ -1,5 +1,6 @@
 ﻿using System;
 using CarPrice.Models;
+using CarPrice.Helpers;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using static CarPrice.Models.BLogic;
@@ -27,11 +28,7 @@ namespace CarPrice.ViewModels
             CurCar = new();
         }
 
-        private Command calcCommand;
-        public Command CalcCommand
-        {
-            get => calcCommand ??= new Command(obj => { Test = $"Price: {CalcCostCar(obj as Car)}\n{obj}"; });
-        }
+        public Command CalcCommand => new (obj => { Test = $"Price: {CalcCostCar(obj as Car)}\n{obj}"; });
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "") => PropertyChanged?.Invoke(this, new(prop));
