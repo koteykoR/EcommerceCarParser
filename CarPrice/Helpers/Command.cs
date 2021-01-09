@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace CarPrice.Helpers
 {
-    public sealed class Command : ICommand
+    internal sealed class Command : ICommand
     {
         private readonly Action<object> execute;
         private readonly Predicate<object> canExecute;

@@ -1,26 +1,24 @@
 ﻿using System;
 using CarPrice.Models;
 using CarPrice.Helpers;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using static CarPrice.Models.BLogic;
 
 namespace CarPrice.ViewModels
 {
-    public sealed class MainViewModel : INotifyPropertyChanged
+    internal sealed class MainViewModel : ViewModel
     {
         private Car curCar;
         public Car CurCar
         {
             get => curCar;
-            set { curCar = value; OnPropertyChanged("Car"); }
+            set => Set(ref curCar, value);
         }
 
         private string test;
         public string Test
         {
             get => test;
-            set { test = value; OnPropertyChanged("Test"); }
+            set => Set(ref test, value);
         }
 
         public MainViewModel()
@@ -29,8 +27,5 @@ namespace CarPrice.ViewModels
         }
 
         public Command CalcCommand => new (obj => { Test = $"Price: {CalcCostCar(obj as Car)}\n{obj}"; });
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "") => PropertyChanged?.Invoke(this, new(prop));
     }
 }
