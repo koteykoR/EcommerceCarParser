@@ -14,7 +14,7 @@ namespace CarPrice.ViewModels
             set => Set(ref curCar, value);
         }
 
-        private string test;
+        private string test = "Тест";
         public string Test
         {
             get => test;

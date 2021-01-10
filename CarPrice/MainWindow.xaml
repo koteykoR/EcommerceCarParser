@@ -5,40 +5,81 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodels="clr-namespace:CarPrice.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="669" Width="654">
-    <Grid>
-        <Grid.DataContext>
-            <viewmodels:MainViewModel/>
-        </Grid.DataContext>
-        
-        <StackPanel Name="dataCar" Margin="165,10,208,292" DataContext="{Binding CurCar}" >
-            <Label Content="Компания"/>
-            <TextBox Text="{Binding Company, UpdateSourceTrigger=PropertyChanged}"/>
-            
-            <Label Content="Модель"/>
-            <TextBox Text="{Binding Model, UpdateSourceTrigger=PropertyChanged}"/>
-            
-            <Label Content="Пробег"/>
-            <TextBox Text="{Binding Mileage, UpdateSourceTrigger=PropertyChanged}"/>
-            
-            <Label Content="Мощность"/>
-            <TextBox Text="{Binding EnginePower, UpdateSourceTrigger=PropertyChanged}"/>
-            
-            <Label Content="Объем"/>
-            <TextBox Text="{Binding EngineVolume, UpdateSourceTrigger=PropertyChanged}"/>
-            
-            <Label Content="Дата"/>
-            <DatePicker Name="date" SelectedDate="{Binding Date, UpdateSourceTrigger=PropertyChanged}"/>
-            
-            <Label Content="КПП"/>
-            <RadioButton Content="Автомат" IsChecked="{Binding Transmission}"/>
-            <RadioButton Content="Механика"/>
-        </StackPanel>
+        Title="MainWindow" Height="474" Width="800">
 
-        <StackPanel Name="actions" Margin="147,366,190,206">
-            <Button Name="Calc" Content="Рассчитать" Command="{Binding CalcCommand}" CommandParameter="{Binding CurCar}"/>
-            
-            <TextBlock Text="{Binding Test}" Height="41"/>
-        </StackPanel>
-    </Grid>
+    <Window.DataContext>
+        <viewmodels:MainViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+    </Window.Resources>
+
+    <DockPanel>
+        <StatusBar DockPanel.Dock="Bottom" Height="32" RenderTransformOrigin="0.5,0.5">
+            <StatusBarItem>
+                <TextBlock Text="Всё готово"/>
+            </StatusBarItem>
+        </StatusBar>
+
+        <TabControl>
+            <TabItem Header="Параметры">
+                <Grid ShowGridLines="False">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="111*" />
+                        <RowDefinition Height="111*"/>
+                        <RowDefinition Height="120*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="256*"/>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="256*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Grid.Row="0">
+                        <Label Content="Компания:"/>
+                        <TextBox Text="{Binding CurCar.Company}"/>
+                        <Label Content="Фирма:"/>
+                        <TextBox Text="{Binding CurCar.Model}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="0" Grid.Row="1">
+                        <Label Content="Мощность:"/>
+                        <TextBox Text="{Binding CurCar.EnginePower}"/>
+                        <Label Content="Объем:"/>
+                        <TextBox Text="{Binding CurCar.EngineVolume}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="0" Grid.Row="2">
+                        <Label Content="Пробег:"/>
+                        <TextBox Text="{Binding CurCar.Mileage}"/>
+                        <Label Content="КПП:"/>
+                        <RadioButton Content="Автомат" IsChecked="{Binding CurCar.Transmission}"/>
+                        <RadioButton Content="Механика"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2" Grid.Row="0">
+                        <Label Content="Дата:"/>
+                        <DatePicker Height="30" SelectedDate="{Binding CurCar.Date}"/>
+                        <Label/>
+                        <Label/>
+                        <Label/>
+                        <Button Content="Рассчитать" Command="{Binding CalcCommand}" CommandParameter="{Binding CurCar}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2" Grid.Row="1">
+                        <Label Content="Результаты:"/>
+                        <TextBlock Height="96" Text="{Binding Test}"/>
+                    </StackPanel>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Помощь"></TabItem>
+        </TabControl>
+    </DockPanel>
+    
 </Window>
