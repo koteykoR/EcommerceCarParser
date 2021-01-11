@@ -15,7 +15,6 @@ namespace CarPrice.Helpers
 
             field = value;
             OnPropertyChanged(prop);
-            return;
         }
     }
 }

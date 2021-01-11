@@ -2,6 +2,8 @@
 using CarPrice.Models;
 using CarPrice.Helpers;
 using static CarPrice.Models.BLogic;
+using static System.String;
+using System.ComponentModel;
 
 namespace CarPrice.ViewModels
 {

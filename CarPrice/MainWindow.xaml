@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewmodels="clr-namespace:CarPrice.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+        xmlns:viewmodels="clr-namespace:CarPrice.ViewModels" 
+        xmlns:validation="clr-namespace:CarPrice.Validation"
         mc:Ignorable="d"
         Title="MainWindow" Height="474" Width="800">
 
@@ -41,21 +42,61 @@
 
                     <StackPanel Grid.Column="0" Grid.Row="0">
                         <Label Content="Компания:"/>
-                        <TextBox Text="{Binding CurCar.Company}"/>
-                        <Label Content="Фирма:"/>
-                        <TextBox Text="{Binding CurCar.Model}"/>
+                        <TextBox>
+                            <TextBox.Text>
+                                <Binding Path="CurCar.Company">
+                                    <Binding.ValidationRules>
+                                        <validation:CompanyModelValidation/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label Content="Модель:"/>
+                        <TextBox>
+                            <TextBox.Text>
+                                <Binding Path="CurCar.Model">
+                                    <Binding.ValidationRules>
+                                        <validation:CompanyModelValidation/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
                     </StackPanel>
 
                     <StackPanel Grid.Column="0" Grid.Row="1">
                         <Label Content="Мощность:"/>
-                        <TextBox Text="{Binding CurCar.EnginePower}"/>
+                        <TextBox>
+                            <TextBox.Text>
+                                <Binding Path="CurCar.EnginePower">
+                                    <Binding.ValidationRules>
+                                        <validation:MileageEnginePowerVolumeValidation/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
                         <Label Content="Объем:"/>
-                        <TextBox Text="{Binding CurCar.EngineVolume}"/>
+                        <TextBox>
+                            <TextBox.Text>
+                                <Binding Path="CurCar.EngineVolume">
+                                    <Binding.ValidationRules>
+                                        <validation:MileageEnginePowerVolumeValidation/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
                     </StackPanel>
 
                     <StackPanel Grid.Column="0" Grid.Row="2">
                         <Label Content="Пробег:"/>
-                        <TextBox Text="{Binding CurCar.Mileage}"/>
+                        <TextBox>
+                            <TextBox.Text>
+                                <Binding Path="CurCar.Mileage">
+                                    <Binding.ValidationRules>
+                                        <validation:MileageEnginePowerVolumeValidation/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
                         <Label Content="КПП:"/>
                         <RadioButton Content="Автомат" IsChecked="{Binding CurCar.Transmission}"/>
                         <RadioButton Content="Механика"/>
