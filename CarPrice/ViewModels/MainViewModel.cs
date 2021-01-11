@@ -2,14 +2,12 @@
 using CarPrice.Models;
 using CarPrice.Helpers;
 using static CarPrice.Models.BLogic;
-using static System.String;
-using System.ComponentModel;
 
 namespace CarPrice.ViewModels
 {
     internal sealed class MainViewModel : ViewModel
     {
-        private Car curCar;
+        private Car curCar = new();
         public Car CurCar
         {
             get => curCar;
@@ -21,11 +19,6 @@ namespace CarPrice.ViewModels
         {
             get => test;
             set => Set(ref test, value);
-        }
-
-        public MainViewModel()
-        {
-            CurCar = new();
         }
 
         public Command CalcCommand => new (obj => { Test = $"Price: {CalcCostCar(obj as Car)}\n{obj}"; });
