@@ -21,6 +21,6 @@ namespace CarPrice.ViewModels
             set => Set(ref test, value);
         }
 
-        public Command CalcCommand => new (obj => { Test = $"Price: {CalcCostCar(obj as Car)}\n{obj}"; });
+        public Command CalcCommand => new (obj => { Test = TestGetAllDb(); });
     }
 }
