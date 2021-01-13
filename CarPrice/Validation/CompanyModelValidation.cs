@@ -13,13 +13,13 @@ namespace CarPrice.Validation
 
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            var maybeCompany = value as string;
+            var maybeCompanyModel = value as string;
 
-            return maybeCompany switch
+            return maybeCompanyModel switch
             {
-                string when IsNullOrWhiteSpace(maybeCompany) => new(false, "Значение в поле не может быть пустой"),
-                string when maybeCompany.Length <= 2 => new(false, "Минимальная длина 3 символа"),
-                string when !maybeCompany.All(c => IsSpaceOrLatinOrDigit(c)) => new(false, "Некорректные символы"),
+                string when IsNullOrWhiteSpace(maybeCompanyModel) => new(false, "Значение в поле не может быть пустой"),
+                string when maybeCompanyModel.Length <= 2 => new(false, "Минимальная длина 3 символа"),
+                string when !maybeCompanyModel.All(c => IsSpaceOrLatinOrDigit(c)) => new(false, "Некорректные символы"),
                 _ => new(true, null)
             };
         }

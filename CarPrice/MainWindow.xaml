@@ -69,7 +69,7 @@
                             <TextBox.Text>
                                 <Binding Path="CurCar.EnginePower">
                                     <Binding.ValidationRules>
-                                        <validation:MileageEnginePowerVolumeValidation/>
+                                        <validation:MileageEnginePowerValidation/>
                                     </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>
@@ -77,9 +77,9 @@
                         <Label Content="Объем:"/>
                         <TextBox>
                             <TextBox.Text>
-                                <Binding Path="CurCar.EngineVolume">
+                                <Binding Path="CurCar.EngineVolume" StringFormat="N1">
                                     <Binding.ValidationRules>
-                                        <validation:MileageEnginePowerVolumeValidation/>
+                                        <validation:EngineVolumeValidation/>
                                     </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>
@@ -92,7 +92,7 @@
                             <TextBox.Text>
                                 <Binding Path="CurCar.Mileage">
                                     <Binding.ValidationRules>
-                                        <validation:MileageEnginePowerVolumeValidation/>
+                                        <validation:MileageEnginePowerValidation/>
                                     </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>
