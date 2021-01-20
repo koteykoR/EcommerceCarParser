@@ -1,0 +1,3 @@
+[submodule "DromParser"]
+	path = DromParser
+	url = git@github.com:koteykoR/DromParser.git
