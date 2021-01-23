@@ -1,7 +1,6 @@
 ﻿using System;
 using CarPrice.Models;
 using CarPrice.Helpers;
-using static CarPrice.Models.BLogic;
 
 namespace CarPrice.ViewModels
 {
@@ -21,6 +20,14 @@ namespace CarPrice.ViewModels
             set => Set(ref test, value);
         }
 
-        public Command CalcCommand => new (obj => { Test = CalcCostCar(CurCar) + '\n' + CurCar.ToString(); });
+        public Command CalcCommand => new (obj => 
+        {
+            if (obj is Car)
+            {
+                var car = obj as Car;
+
+                Test = BLogic.GetDataFromLibParser(car.Company, car.Model);
+            }
+        });
     }
 }

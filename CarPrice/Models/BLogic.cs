@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using CarPrice.Repository;
+using EcommerceCarsParser.Parsers;
 
 namespace CarPrice.Models
 {
@@ -8,39 +10,23 @@ namespace CarPrice.Models
     {
         private static readonly DBRepository<Car> db = new();
 
-        internal static string CalcCostCar(Car car) => car switch
+        public static string GetDataFromLibParser(string company, string model)
         {
-            Car when car.Transmission => "High price :)",
-            _ => "Low price :("
-        };
+            var parser = new AutoParser(company, model);
 
-        internal static void TestAddDb()
-        {
-            var testCars = new Car[]
+            var sb = new StringBuilder();
+
+            foreach (var car in parser.Parse())
             {
-                new("company1", "model1", 1, 1, 1, "1", true, 1),
-                new("company2", "model2", 2, 2, 2, "2", true, 2),
-                new("company3", "model3", 3, 3, 3, "3", false, 3),
-            };
+                sb.Append(car);
+                sb.Append('\n');
 
-            foreach (var testCar in testCars)
-            {
-                db.Add(testCar);
-            }
-        }
-
-        internal static string TestGetAllDb()
-        {
-            var carsText = "";
-
-            var cars = db.GetAll();
-
-            foreach (var car in cars)
-            {
-                carsText += car.ToString() + "\n";
+                db.Add(new(car.Company, car.Model, car.Mileage, 
+                           car.EnginePower, car.EngineVolume, 
+                           car.Year, car.Transmission, car.Price));
             }
 
-            return carsText;
+            return sb.ToString();
         }
     }
 }

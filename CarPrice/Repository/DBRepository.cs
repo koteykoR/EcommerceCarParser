@@ -18,7 +18,11 @@ namespace CarPrice.Repository
             dbSet = context.Set<T>();
         }
 
-        public void Add(T element) => dbSet.Add(element);
+        public void Add(T element)
+        {
+            dbSet.Add(element);
+            context.SaveChanges();
+        }
 
         public IEnumerable<T> GetAll() => dbSet;
 
